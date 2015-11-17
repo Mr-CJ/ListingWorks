@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import com.smalljellybean.listingworks.R;
 
 public class MainActivity extends AppCompatActivity {
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
