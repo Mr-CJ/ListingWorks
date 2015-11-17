@@ -1,4 +1,4 @@
-package com.smalljellybean.listingworks.listingworks;
+package com.smalljellybean.listingworks;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

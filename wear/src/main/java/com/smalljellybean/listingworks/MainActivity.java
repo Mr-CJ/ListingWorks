@@ -1,4 +1,4 @@
-package com.smalljellybean.listingworks.listingworks;
+package com.smalljellybean.listingworks;
 
 import android.os.Bundle;
 import android.support.wearable.activity.WearableActivity;

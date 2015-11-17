@@ -1,12 +1,14 @@
-package com.smalljellybean.listingworks.listingworks;
+package com.smalljellybean.listingworks.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+import com.smalljellybean.listingworks.R;
 
+public class MainActivity extends AppCompatActivity {
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
