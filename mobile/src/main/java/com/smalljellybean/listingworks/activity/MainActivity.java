@@ -48,14 +48,15 @@ public class MainActivity extends NavigationActivity {
     }
 
     private void initNavigation() {
-        ListView listView = ((ListView) navigationView.inflate());
+        navigationView.inflate();
+        ListView listView = (ListView) findViewById(R.id.navigation_menu_list);
         listView.setAdapter(new NavigationItemAdapter(this));
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
     }
 
     @Override
     protected int getDrawerLayoutResId() {
-        return R.layout.drawer_listview;
+        return R.layout.navigation_layout;
     }
 
     class NavigationItemAdapter extends BaseAdapter {
@@ -66,10 +67,10 @@ public class MainActivity extends NavigationActivity {
         public NavigationItemAdapter(Context context) {
             this.context = context;
             items = new ArrayList<>();
-            items.add("个人主页");
-            items.add("分享清单");
-            items.add("意见反馈");
-            items.add("设置");
+            items.add("Notifications");
+            items.add("Share List");
+            items.add("Feedback");
+            items.add("Settings");
         }
 
         @Override
