@@ -11,9 +11,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.smalljellybean.listingworks.R;
-import com.smalljellybean.listingworks.activity.service.HttpService;
-import com.smalljellybean.listingworks.activity.service.ListItem;
-import com.smalljellybean.listingworks.activity.service.ListItemResponse;
+import com.smalljellybean.listingworks.service.HttpService;
+import com.smalljellybean.listingworks.domain.ListItem;
+import com.smalljellybean.listingworks.domain.ListItemResponse;
 import com.smalljellybean.listingworks.base.NavigationActivity;
 
 import java.util.ArrayList;

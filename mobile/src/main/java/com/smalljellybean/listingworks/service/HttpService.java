@@ -1,4 +1,4 @@
-package com.smalljellybean.listingworks.activity.service;
+package com.smalljellybean.listingworks.service;
 
 import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.OkHttpClient;

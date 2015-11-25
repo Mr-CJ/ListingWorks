@@ -1,4 +1,4 @@
-package com.smalljellybean.listingworks.activity.service;
+package com.smalljellybean.listingworks.domain;
 
 
 import java.util.List;
