@@ -1,20 +1,25 @@
 package com.smalljellybean.listingworks.activity;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.smalljellybean.listingworks.R;
-import com.smalljellybean.listingworks.service.HttpService;
+import com.smalljellybean.listingworks.activity.fragment.LogInFragment;
+import com.smalljellybean.listingworks.activity.fragment.SignUpFragment;
+import com.smalljellybean.listingworks.base.NavigationActivity;
 import com.smalljellybean.listingworks.domain.ListItem;
 import com.smalljellybean.listingworks.domain.ListItemResponse;
-import com.smalljellybean.listingworks.base.NavigationActivity;
+import com.smalljellybean.listingworks.service.HttpService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +57,25 @@ public class MainActivity extends NavigationActivity {
         ListView listView = (ListView) findViewById(R.id.navigation_menu_list);
         listView.setAdapter(new NavigationItemAdapter(this));
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 4) {
+                    startFragment(new LogInFragment());
+                }
+                if (position == 5) {
+                    startFragment(new SignUpFragment());
+                }
+            }
+        });
+    }
+
+    private void startFragment(Fragment fragment){
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        String tag = fragment.getClass().getName();
+        fragmentTransaction.replace(R.id.fragment_content, fragment);
+        fragmentTransaction.addToBackStack(tag);
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -71,6 +95,8 @@ public class MainActivity extends NavigationActivity {
             items.add("Share List");
             items.add("Feedback");
             items.add("Settings");
+            items.add("Log In");
+            items.add("Sign Up");
         }
 
         @Override

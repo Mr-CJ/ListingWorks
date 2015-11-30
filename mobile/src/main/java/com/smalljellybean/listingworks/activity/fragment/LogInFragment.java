@@ -17,38 +17,32 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class SignUpFragment extends Fragment{
+public class LogInFragment extends Fragment{
 
     private TextView username;
-    private TextView email;
     private TextView password;
     private TextView userInfo;
-    private Button signUp;
+    private Button login;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_signup, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_login, container, false);
         username = (TextView) rootView.findViewById(R.id.username);
-        email = (TextView) rootView.findViewById(R.id.email);
         password = (TextView) rootView.findViewById(R.id.password);
-        signUp = (Button) rootView.findViewById(R.id.sign_up);
+        login = (Button) rootView.findViewById(R.id.sign_up);
         userInfo = (TextView) rootView.findViewById(R.id.user_info);
 
-        signUp.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User user = new User();
-                user.setUsername(username.getText().toString());
-                user.setEmail(email.getText().toString());
-                user.setPassword(password.getText().toString());
-                new HttpService().build().signUp(user, new Callback<User>() {
+                new HttpService().build().login(username.getText().toString(), password.getText().toString(), new Callback<User>() {
                     @Override
                     public void success(User user, Response response) {
                         userInfo.setText(
-                                "objectId: "+ user.getObjectId() + "\n"
-                                + "createAt: "+ user.getCreatedAt() + "\n"
-                                + "sessionToken"+ user.getSessionToken()
+                                "objectId: " + user.getObjectId() + "\n"
+                                        + "createAt: " + user.getCreatedAt() + "\n"
+                                        + "sessionToken" + user.getSessionToken()
                         );
                     }
 

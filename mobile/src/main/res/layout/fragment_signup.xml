@@ -2,14 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="30dp">
+    android:layout_height="match_parent">
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/username"
         android:hint="username"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:id="@+id/email"
+        android:hint="email"
         android:layout_gravity="center_horizontal" />
 
     <EditText
@@ -23,7 +30,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="SignUp"
         android:id="@+id/sign_up"
         android:layout_gravity="center_horizontal" />
     <TextView

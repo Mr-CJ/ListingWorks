@@ -20,7 +20,7 @@ public interface HttpInterface {
     })
     public void listItems(Callback<ListItemResponse> callback);
 
-    @GET("/1/users")
+    @GET("/1/login")
     @Headers({
             "Content-Type: application/json",
             "X-Parse-Application-Id: z487UaKHYRPsy2TDrLmeMRdymIDwfCQ9ESE6n2Wt",
