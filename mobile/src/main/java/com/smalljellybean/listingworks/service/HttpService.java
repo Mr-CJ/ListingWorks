@@ -6,11 +6,13 @@ import com.squareup.okhttp.OkHttpClient;
 import java.util.concurrent.TimeUnit;
 
 import retrofit.RestAdapter;
+import retrofit.android.AndroidLog;
 import retrofit.client.OkClient;
 import retrofit.converter.GsonConverter;
 
 public class HttpService {
 
+    private static final String TAG = HttpService.class.getName();
     private static HttpInterface httpInterface;
 
     public HttpInterface build() {
@@ -30,7 +32,10 @@ public class HttpService {
         OkHttpClient httpClient = new OkHttpClient();
         httpClient.setConnectTimeout(2000, TimeUnit.MILLISECONDS);
 
-        builder.setClient(new OkClient(httpClient));
+
+        builder.setClient(new OkClient(httpClient))
+                .setLogLevel(RestAdapter.LogLevel.FULL)
+                .setLog(new AndroidLog(TAG));
 
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSSZZZZZ");

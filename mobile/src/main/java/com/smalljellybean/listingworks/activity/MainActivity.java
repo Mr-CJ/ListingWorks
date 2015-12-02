@@ -35,6 +35,7 @@ public class MainActivity extends NavigationActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         initNavigation();
         new HttpService().build().listItems(new retrofit.Callback<ListItemResponse>() {
             @Override
