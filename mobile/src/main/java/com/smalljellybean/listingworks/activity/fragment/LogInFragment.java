@@ -42,7 +42,7 @@ public class LogInFragment extends Fragment{
                         userInfo.setText(
                                 "objectId: " + user.getObjectId() + "\n"
                                         + "createAt: " + user.getCreatedAt() + "\n"
-                                        + "sessionToken" + user.getSessionToken()
+                                        + "sessionToken: " + user.getSessionToken()
                         );
                     }
 

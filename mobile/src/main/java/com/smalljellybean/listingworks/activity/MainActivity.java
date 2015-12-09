@@ -56,11 +56,13 @@ public class MainActivity extends NavigationActivity {
     private void initNavigation() {
         navigationView.inflate();
         ListView listView = (ListView) findViewById(R.id.navigation_menu_list);
+        listView.addHeaderView(View.inflate(this, R.layout.navigation_header, null));
         listView.setAdapter(new NavigationItemAdapter(this));
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                drawerLayout.closeDrawers();
                 if (position == 4) {
                     startFragment(new LogInFragment());
                 }
