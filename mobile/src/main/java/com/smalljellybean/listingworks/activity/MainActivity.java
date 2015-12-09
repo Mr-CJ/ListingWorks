@@ -10,13 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.smalljellybean.listingworks.R;
 import com.smalljellybean.listingworks.activity.fragment.LogInFragment;
 import com.smalljellybean.listingworks.activity.fragment.SignUpFragment;
 import com.smalljellybean.listingworks.base.NavigationActivity;
+import com.smalljellybean.listingworks.database.Preferences;
 import com.smalljellybean.listingworks.domain.ListItem;
 import com.smalljellybean.listingworks.domain.ListItemResponse;
 import com.smalljellybean.listingworks.service.HttpService;
@@ -27,9 +30,11 @@ import java.util.List;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class MainActivity extends NavigationActivity {
+public class MainActivity extends NavigationActivity implements IMainActivity{
 
     private static final String TAG = MainActivity.class.getName();
+    private ListView navigation;
+    private FrameLayout navigationHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,18 +60,19 @@ public class MainActivity extends NavigationActivity {
 
     private void initNavigation() {
         navigationView.inflate();
-        ListView listView = (ListView) findViewById(R.id.navigation_menu_list);
-        listView.addHeaderView(View.inflate(this, R.layout.navigation_header, null));
-        listView.setAdapter(new NavigationItemAdapter(this));
-        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        navigation = (ListView) findViewById(R.id.navigation_menu_list);
+        navigationHeader = (FrameLayout) View.inflate(this, R.layout.navigation_header, null);
+        navigation.addHeaderView(navigationHeader);
+        navigation.setAdapter(new NavigationItemAdapter(this));
+        navigation.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        navigation.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 drawerLayout.closeDrawers();
-                if (position == 4) {
+                if (position == 5) {
                     startFragment(new LogInFragment());
                 }
-                if (position == 5) {
+                if (position == 6) {
                     startFragment(new SignUpFragment());
                 }
             }
@@ -79,6 +85,22 @@ public class MainActivity extends NavigationActivity {
         fragmentTransaction.replace(R.id.fragment_content, fragment);
         fragmentTransaction.addToBackStack(tag);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void showUserInfo() {
+        RelativeLayout userInfoLayout = (RelativeLayout) View.inflate(this, R.layout.navigation_header_user_info, null);
+        TextView username = (TextView) userInfoLayout.findViewById(R.id.profile_username);
+        Preferences preferences = Preferences.getInstance(this);
+        if(preferences.getUsername()!=null){
+            username.setText("Hi "+preferences.getUsername());
+        }
+        navigationHeader.addView(userInfoLayout);
+    }
+
+    @Override
+    public void clearUserInfo() {
+        navigationHeader.removeAllViews();
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.smalljellybean.listingworks.activity.fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -8,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.smalljellybean.listingworks.R;
+import com.smalljellybean.listingworks.database.Preferences;
 import com.smalljellybean.listingworks.domain.User;
 import com.smalljellybean.listingworks.service.HttpService;
 
@@ -17,7 +18,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class LogInFragment extends Fragment{
+public class LogInFragment extends BaseFragment{
 
     private TextView username;
     private TextView password;
@@ -39,11 +40,12 @@ public class LogInFragment extends Fragment{
                 new HttpService().build().login(username.getText().toString(), password.getText().toString(), new Callback<User>() {
                     @Override
                     public void success(User user, Response response) {
-                        userInfo.setText(
-                                "objectId: " + user.getObjectId() + "\n"
-                                        + "createAt: " + user.getCreatedAt() + "\n"
-                                        + "sessionToken: " + user.getSessionToken()
-                        );
+                        Preferences preferences = Preferences.getInstance(getActivity());
+                        preferences.saveUserId(user.getObjectId());
+                        preferences.saveUsername(user.getUsername());
+                        preferences.saveToken(user.getSessionToken());
+                        getParentActivity().showUserInfo();
+                        Toast.makeText(getActivity(), "Login Successful!", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -55,4 +57,6 @@ public class LogInFragment extends Fragment{
         });
         return rootView;
     }
+
+
 }

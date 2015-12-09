@@ -7,6 +7,7 @@ public class Preferences {
 
     private static final String SHARED_PREFERENCE_FILE_NAME = "com.smalljellybean.listingworks";
     public static final String USER_ID = "USER_ID";
+    public static final String USERNAME = "USERNAME";
     public static final String SESSION_TOKEN = "SESSION_TOKEN";
 
     private SharedPreferences sharedPreferences;
@@ -47,6 +48,14 @@ public class Preferences {
 
     public String getSessionToken() {
         return getProperty(SESSION_TOKEN);
+    }
+
+    public void saveUsername(String username) {
+        saveProperty(USERNAME, username);
+    }
+
+    public String getUsername() {
+        return getProperty(USERNAME);
     }
 
 }
