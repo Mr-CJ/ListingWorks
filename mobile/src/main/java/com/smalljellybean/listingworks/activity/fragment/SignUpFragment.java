@@ -23,8 +23,8 @@ public class SignUpFragment extends BaseFragment{
     private TextView username;
     private TextView email;
     private TextView password;
-    private TextView userInfo;
     private Button signUp;
+    private String usernameText;
 
     @Nullable
     @Override
@@ -34,13 +34,13 @@ public class SignUpFragment extends BaseFragment{
         email = (TextView) rootView.findViewById(R.id.email);
         password = (TextView) rootView.findViewById(R.id.password);
         signUp = (Button) rootView.findViewById(R.id.sign_up);
-        userInfo = (TextView) rootView.findViewById(R.id.user_info);
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 User user = new User();
-                user.setUsername(username.getText().toString());
+                usernameText = username.getText().toString();
+                user.setUsername(usernameText);
                 user.setEmail(email.getText().toString());
                 user.setPassword(password.getText().toString());
                 new HttpService().build().signUp(user, new Callback<User>() {
@@ -48,7 +48,7 @@ public class SignUpFragment extends BaseFragment{
                     public void success(User user, Response response) {
                         Preferences preferences = Preferences.getInstance(getActivity());
                         preferences.saveUserId(user.getObjectId());
-                        preferences.saveUsername(user.getUsername());
+                        preferences.saveUsername(usernameText);
                         preferences.saveToken(user.getSessionToken());
                         getParentActivity().showUserInfo();
                         Toast.makeText(getActivity(), "Sign In Successful!", Toast.LENGTH_LONG).show();
@@ -56,7 +56,7 @@ public class SignUpFragment extends BaseFragment{
 
                     @Override
                     public void failure(RetrofitError error) {
-
+                        Toast.makeText(getActivity(), "Sign In Failed!", Toast.LENGTH_LONG).show();
                     }
                 });
             }

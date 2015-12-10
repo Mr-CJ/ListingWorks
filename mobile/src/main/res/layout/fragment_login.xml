@@ -28,10 +28,5 @@
         android:text="Login"
         android:id="@+id/sign_up"
         android:layout_gravity="center_horizontal" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:id="@+id/user_info"/>
 
 </LinearLayout>

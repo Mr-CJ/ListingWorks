@@ -22,7 +22,6 @@ public class LogInFragment extends BaseFragment{
 
     private TextView username;
     private TextView password;
-    private TextView userInfo;
     private Button login;
 
     @Nullable
@@ -32,7 +31,6 @@ public class LogInFragment extends BaseFragment{
         username = (TextView) rootView.findViewById(R.id.username);
         password = (TextView) rootView.findViewById(R.id.password);
         login = (Button) rootView.findViewById(R.id.sign_up);
-        userInfo = (TextView) rootView.findViewById(R.id.user_info);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +48,7 @@ public class LogInFragment extends BaseFragment{
 
                     @Override
                     public void failure(RetrofitError error) {
-
+                        Toast.makeText(getActivity(), "Login Failed!", Toast.LENGTH_LONG).show();
                     }
                 });
             }
