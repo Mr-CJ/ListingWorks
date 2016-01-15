@@ -4,7 +4,6 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,19 +15,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.smalljellybean.listingworks.R;
+import com.smalljellybean.listingworks.activity.fragment.HomeFragment;
 import com.smalljellybean.listingworks.activity.fragment.LogInFragment;
 import com.smalljellybean.listingworks.activity.fragment.SignUpFragment;
 import com.smalljellybean.listingworks.base.NavigationActivity;
 import com.smalljellybean.listingworks.database.Preferences;
-import com.smalljellybean.listingworks.domain.ListItem;
-import com.smalljellybean.listingworks.domain.ListItemResponse;
-import com.smalljellybean.listingworks.service.HttpService;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 public class MainActivity extends NavigationActivity implements IMainActivity{
 
@@ -42,20 +36,21 @@ public class MainActivity extends NavigationActivity implements IMainActivity{
         setContentView(R.layout.activity_main);
 
         initNavigation();
-        new HttpService().build().listItems(new retrofit.Callback<ListItemResponse>() {
-            @Override
-            public void success(ListItemResponse listItems, Response response) {
-                Log.d(TAG, "success");
-                for (ListItem listItem : listItems.getResults()) {
-                    Log.d(TAG, listItem.toString());
-                }
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                Log.d(TAG, "failure");
-            }
-        });
+//        new HttpService().build().listItems(new retrofit.Callback<ListItemResponse>() {
+//            @Override
+//            public void success(ListItemResponse listItems, Response response) {
+//                Log.d(TAG, "success");
+//                for (ListItem listItem : listItems.getResults()) {
+//                    Log.d(TAG, listItem.toString());
+//                }
+//            }
+//
+//            @Override
+//            public void failure(RetrofitError error) {
+//                Log.d(TAG, "failure");
+//            }
+//        });
+        startFragment(new HomeFragment());
     }
 
     private void initNavigation() {

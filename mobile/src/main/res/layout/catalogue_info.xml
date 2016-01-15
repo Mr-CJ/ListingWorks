@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.smalljellybean.listingworks.view.FontTextView
+        style="@style/TextView.Catalogue"
+        android:id="@+id/catalogue_name" />
+
+    <LinearLayout
+        android:layout_below="@+id/catalogue_name"
+        android:id="@+id/categoriesPrimary"
+        style="@style/LinearLayout.Categories">
+
+        <com.smalljellybean.listingworks.view.FontTextView
+            style="@style/TextView.Category"
+            android:id="@+id/category_1" />
+
+        <com.smalljellybean.listingworks.view.FontTextView
+            style="@style/TextView.Category"
+            android:id="@+id/category_2" />
+
+        <com.smalljellybean.listingworks.view.FontTextView
+            style="@style/TextView.Category"
+            android:id="@+id/category_3" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_below="@+id/categoriesPrimary"
+        android:id="@+id/categoriesSecondary"
+        android:layout_marginTop="5dp"
+        style="@style/LinearLayout.Categories">
+
+        <com.smalljellybean.listingworks.view.FontTextView
+            android:id="@+id/category_4"
+            style="@style/TextView.Category" />
+
+        <com.smalljellybean.listingworks.view.FontTextView
+            android:id="@+id/category_5"
+            style="@style/TextView.Category" />
+    </LinearLayout>
+
+</RelativeLayout>
